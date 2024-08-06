@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModernDOM CKEditor Plugin Test</title>
+</head>
+<body>
+    <textarea id="editor"></textarea>
+
+    <script src="https://cdn.jsdelivr.net/npm/moderndom@latest/dist/moderndom.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-build-classic@latest/build/ckeditor.js"></script>
+    <script src="./dist/moderndom-ckeditor-plugin.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#editor').ckeditor();
+        });
+    </script>
+</body>
+</html>
