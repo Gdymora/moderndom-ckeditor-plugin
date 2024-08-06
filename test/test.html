@@ -1,20 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ModernDOM CKEditor Plugin Test</title>
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <textarea id="editor"></textarea>
-
-    <script src="https://cdn.jsdelivr.net/npm/moderndom@latest/dist/moderndom.min.js"></script>
+    <!-- Dropdown menu -->
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" id="dropdownMenuButtonSecond">Dropdown button</button>
+      <div class="dropdown-menu" data-toggle-id="dropdownMenuButtonSecond">
+        <a href="#" class="dropdown-item">Action Second</a>
+        <a href="#" class="dropdown-item">Action #2 Second</a>
+        <a href="#" class="dropdown-item">Action #3 Second</a>
+      </div>
+    </div>
+    <div class="active">Active</div>
+    <script src="./script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-build-classic@latest/build/ckeditor.js"></script>
-    <script src="./dist/moderndom-ckeditor-plugin.js"></script>
+    <script src="../dist/moderndom-ckeditor-plugin.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#editor').ckeditor();
-        });
+      $(".active").on("click", sayHello);
+      $(".active").off("click", sayHello);
+      $(".active").click(sayHello);
+      function sayHello() {
+        console.log("Hello");
+      } 
     </script>
-</body>
+
+    <script>
+        function initEditor() {
+            if (typeof $ === 'undefined') {
+                console.error('ModernDOM is not loaded');
+                return;
+            }
+            console.log('ModernDOM is loaded');
+            
+            if (typeof $.fn.ckeditor === 'undefined') {
+                console.error('CKEditor plugin is not loaded');
+                return;
+            }
+            console.log('CKEditor plugin is loaded');
+            
+            $('#editor').ckeditor();
+        }
+
+        // Чекаємо, поки всі скрипти завантажаться
+        function checkScriptsLoaded() {
+            if (typeof $ !== 'undefined' && typeof ClassicEditor !== 'undefined' && typeof $.fn.ckeditor !== 'undefined') {
+                initEditor();
+            } else {
+                setTimeout(checkScriptsLoaded, 50);
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', checkScriptsLoaded);
+        } else {
+            checkScriptsLoaded();
+        }
+    </script>
+  </body>
 </html>
