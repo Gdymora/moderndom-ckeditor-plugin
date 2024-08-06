@@ -1,17 +1,21 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    'moderndom-ckeditor-plugin': './src/plugins/ckeditor.js',
+    'moderndom-formvalidation-plugin': './src/plugins/formValidation.js',
+    'moderndom-autocomplete-plugin': './src/plugins/autocomplete.js',
+    'moderndom-all-plugins': './src/index.js'  // Додайте цей рядок
+  },
   output: {
-    filename: 'moderndom-ckeditor-plugin.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
-    library: 'ModernDOMCKEditor',
+    library: ['ModernDOM', '[name]'],
     libraryTarget: 'umd',
     globalObject: 'this'
   },
   externals: {
-    moderndom: 'ModernDOM',
-    '@ckeditor/ckeditor5-build-classic': 'ClassicEditor'
+    moderndom: 'ModernDOM'
   },
   module: {
     rules: [

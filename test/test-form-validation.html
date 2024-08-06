@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation Test</title>
+    <style>
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="testForm">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" />
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" />
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+
+    <script src="./script.js"></script>
+    <script src="../dist/moderndom-formvalidation-plugin.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        $("#testForm").validate({
+          rules: {
+            name: {
+              required: true,
+              minlength: 2,
+            },
+            email: {
+              required: true,
+              email: true,
+            },
+            password: {
+              required: true,
+              minlength: 6,
+            },
+          },
+          messages: {
+            name: {
+              required: "Please enter your name",
+              minlength: "Name must be at least 2 characters long",
+            },
+            email: {
+              required: "Please enter your email",
+              email: "Please enter a valid email address",
+            },
+            password: {
+              required: "Please enter a password",
+              minlength: "Password must be at least 6 characters long",
+            },
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

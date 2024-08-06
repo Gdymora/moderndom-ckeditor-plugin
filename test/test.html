@@ -21,46 +21,26 @@
     <script src="./script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-build-classic@latest/build/ckeditor.js"></script>
     <script src="../dist/moderndom-ckeditor-plugin.js"></script>
+    <!-- <script src="../dist/moderndom-all-plugins.js"></script> -->
     <script>
       $(".active").on("click", sayHello);
       $(".active").off("click", sayHello);
       $(".active").click(sayHello);
       function sayHello() {
         console.log("Hello");
-      } 
+      }
     </script>
 
     <script>
-        function initEditor() {
-            if (typeof $ === 'undefined') {
-                console.error('ModernDOM is not loaded');
-                return;
-            }
-            console.log('ModernDOM is loaded');
-            
-            if (typeof $.fn.ckeditor === 'undefined') {
-                console.error('CKEditor plugin is not loaded');
-                return;
-            }
-            console.log('CKEditor plugin is loaded');
-            
-            $('#editor').ckeditor();
-        }
-
-        // Чекаємо, поки всі скрипти завантажаться
-        function checkScriptsLoaded() {
-            if (typeof $ !== 'undefined' && typeof ClassicEditor !== 'undefined' && typeof $.fn.ckeditor !== 'undefined') {
-                initEditor();
-            } else {
-                setTimeout(checkScriptsLoaded, 50);
-            }
-        }
-
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', checkScriptsLoaded);
+      document.addEventListener("DOMContentLoaded", function () {
+        if (typeof $ !== "undefined" && typeof $.fn.ckeditor !== "undefined") {
+          $("#editor").ckeditor({
+            // Опції CKEditor
+          });
         } else {
-            checkScriptsLoaded();
+          console.error("ModernDOM or CKEditor plugin is not loaded properly");
         }
+      });
     </script>
   </body>
 </html>

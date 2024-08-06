@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ModernDOM CKEditor Plugin Test</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body> 
+    <div class="active">Autocomplete</div>
+    <script src="./script.js"></script>
+    <script src="../dist/moderndom-autocomplete-plugin.js"></script>
+    <input type="text" id="autocomplete-input" placeholder="Start typing..." />
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        $("#autocomplete-input").autocomplete({
+          source: ["Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape"],
+          minLength: 1,
+          maxItems: 4,
+        });
+      });
+    </script>
+  </body>
+</html>
